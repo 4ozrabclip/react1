@@ -34,14 +34,19 @@ function App() {
         />
         <button onClick={addTodo}>Add</button>
       </div>
-      <ul>
-        {todos.map((todo, index) => (
-          <li key={index}>
-            {todo}
-            <button onClick={() => removeTodo(index)}>Remove</button>
-          </li>
-        ))}
-      </ul>
+            <ul>
+      {todos.map((todo, index) => (
+        <li key={index}>
+          <input
+          type="checkbox"
+          onChange={() => handleCheckboxChange(index)}
+          checked={completed[index]}
+          id={`todo-${index}`}/>
+      <label htmlFor={`todo-${index}`}>{todo}</label>
+      <button onClick={() => removeTodo(index)}>Remove</button>
+    </li>
+    ))}
+    </ul>
     </div>
   );
 }
