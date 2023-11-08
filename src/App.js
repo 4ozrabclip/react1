@@ -1,5 +1,8 @@
+
 import React, { useState } from 'react';
 import './App.css';
+import { DndContext } from '@dnd-kit/core';
+import { Draggable } from './Draggable.js';
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -16,7 +19,7 @@ function App() {
     updatedTodos.splice(index, 1);
     setTodos(updatedTodos);
   };
-  
+
   const [completed, setCompleted] = useState(new Array(todos.length).fill(false));
 
   const handleCheckboxChange = (index) => {
@@ -35,7 +38,7 @@ function App() {
           value={task}
           onChange={(e) => setTask(e.target.value)}
           onKeyDown={(e) => {
-            if(e.key === 'Enter'){
+            if (e.key === 'Enter') {
               addTodo();
             }
           }}
@@ -43,22 +46,26 @@ function App() {
         <button onClick={addTodo}>Add</button>
       </div>
       <ul>
-      {todos.map((todo, index) => (
-        <li key={index}>
-          <input
-          type="checkbox"
-          onChange={() => handleCheckboxChange(index)}
-          checked={completed[index]}
-          id={`todo-${index}`}/>
-      <label htmlFor={`todo-${index}`}>{todo}</label>
-      <button onClick={() => removeTodo(index)}>Remove</button>
-    </li>
-    ))}
-    </ul>
+        <DndContext>
+          {todos.map((todo, index) => (
+            <Draggable key={index} id={`todo-${index}`}>
+              {/* Wrap each todo in Draggable */}
+              <li>
+                <input
+                  type="checkbox"
+                  onChange={() => handleCheckboxChange(index)}
+                  checked={completed[index]}
+                  id={`todo-${index}`}
+                />
+                <label htmlFor={`todo-${index}`}>{todo}</label>
+                <button onClick={() => removeTodo(index)}>Remove</button>
+              </li>
+            </Draggable>
+          ))}
+        </DndContext>
+      </ul>
     </div>
   );
 }
 
-
 export default App;
-
