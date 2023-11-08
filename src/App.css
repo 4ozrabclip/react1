@@ -44,6 +44,11 @@ li {
   border-radius: 5px;
 }
 
+li input[type="checkbox"]:checked + label {
+  text-decoration: line-through;
+  color: #888;
+}
+
 li button {
   background-color: #ff3333;
   color: #fff;
