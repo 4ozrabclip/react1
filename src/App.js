@@ -16,6 +16,14 @@ function App() {
     updatedTodos.splice(index, 1);
     setTodos(updatedTodos);
   };
+  
+  const [completed, setCompleted] = useState(new Array(todos.length).fill(false));
+
+  const handleCheckboxChange = (index) => {
+    const updatedCompleted = [...completed];
+    updatedCompleted[index] = !updatedCompleted[index];
+    setCompleted(updatedCompleted);
+  };
 
   return (
     <div className="App">
@@ -34,7 +42,7 @@ function App() {
         />
         <button onClick={addTodo}>Add</button>
       </div>
-            <ul>
+      <ul>
       {todos.map((todo, index) => (
         <li key={index}>
           <input
@@ -51,4 +59,6 @@ function App() {
   );
 }
 
+
 export default App;
+
