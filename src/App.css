@@ -17,7 +17,7 @@ input {
 
 button {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #007bff8e;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -46,11 +46,11 @@ li {
 
 li input[type="checkbox"]:checked + label {
   text-decoration: line-through;
-  color: #888;
+  color: #e6383894;
 }
 
 li button {
-  background-color: #ff3333;
+  background-color: #ff3333bb;
   color: #fff;
   border: none;
   border-radius: 5px;
