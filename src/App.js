@@ -1,8 +1,9 @@
-
 import React, { useState } from 'react';
 import './App.css';
 import { DndContext } from '@dnd-kit/core';
+import { Droppable } from './Droppable';
 import { Draggable } from './Draggable.js';
+
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -10,7 +11,7 @@ function App() {
 
   const addTodo = () => {
     if (task.trim() === '') return;
-    setTodos([...todos, task]);
+    setTodos([...todos, { task: task, completed: false }]);
     setTask('');
   };
 
@@ -20,12 +21,14 @@ function App() {
     setTodos(updatedTodos);
   };
 
-  const [completed, setCompleted] = useState(new Array(todos.length).fill(false));
-
   const handleCheckboxChange = (index) => {
-    const updatedCompleted = [...completed];
-    updatedCompleted[index] = !updatedCompleted[index];
-    setCompleted(updatedCompleted);
+    const updatedTodos = [...todos];
+    updatedTodos[index].completed = !updatedTodos[index].completed;
+    setTodos(updatedTodos);
+  };
+
+  const handleDrop = (event) => {
+    console.log("yep");
   };
 
   return (
@@ -45,25 +48,34 @@ function App() {
         />
         <button onClick={addTodo}>Add</button>
       </div>
-      <ul>
-        <DndContext>
+      <DndContext onDragEnd={handleDrop}>
+        <ul>
           {todos.map((todo, index) => (
-            <Draggable key={index} id={`todo-${index}`}>
-              {/* Wrap each todo in Draggable */}
+            <Droppable key={index}>
               <li>
-                <input
-                  type="checkbox"
-                  onChange={() => handleCheckboxChange(index)}
-                  checked={completed[index]}
-                  id={`todo-${index}`}
-                />
-                <label htmlFor={`todo-${index}`}>{todo}</label>
-                <button onClick={() => removeTodo(index)}>Remove</button>
+                <div className="todo-container">
+                  <input
+                    type="checkbox"
+                    onChange={() => handleCheckboxChange(index)}
+                    checked={todo.completed}
+                    id={`todo-${index}`}
+                  />
+                  <Draggable id={`todo-${index}`} index={index}>
+                    <label htmlFor={`todo-${index}`} className={todo.completed ? 'completed' : ''}>
+                      {todo.task}
+                    </label>
+                  </Draggable>
+                  <button onClick={() => removeTodo(index)}>Remove</button>
+                </div>
               </li>
-            </Draggable>
+              <div className="extra-container">
+          <p>..</p>
+        </div>
+            </Droppable>
           ))}
-        </DndContext>
-      </ul>
+        </ul>
+        
+      </DndContext>
     </div>
   );
 }
