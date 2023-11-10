@@ -15,7 +15,7 @@ input {
   font-size: 16px;
 }
 
-button {
+.add-button {
   padding: 10px 20px;
   background-color: #007bff8e;
   margin-left: 10px;
@@ -26,7 +26,7 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.add-button:hover {
   background-color: #0056b3;
 }
 
@@ -58,7 +58,7 @@ li {
   color: #e63838;
 }
 
-li button {
+.remove-button {
   background-color: #ff3333bb;
   color: #fff;
   border: none;
@@ -67,7 +67,7 @@ li button {
   padding: 5px 10px;
 }
 
-li button:hover {
+.remove-button:hover {
   background-color: rgb(150, 61, 61);
 }
 

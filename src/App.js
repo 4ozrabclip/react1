@@ -4,7 +4,6 @@ import { DndContext } from '@dnd-kit/core';
 import { Droppable } from './Droppable';
 import { Draggable } from './Draggable.js';
 
-
 function App() {
   const [todos, setTodos] = useState([]);
   const [task, setTask] = useState('');
@@ -46,7 +45,7 @@ function App() {
             }
           }}
         />
-        <button onClick={addTodo}>Add</button>
+        <button className="add-button" onClick={addTodo}>Add</button>
       </div>
       <DndContext onDragEnd={handleDrop}>
         <ul>
@@ -54,27 +53,27 @@ function App() {
             <Droppable key={index}>
               <li>
                 <div className="todo-container">
-                  <input
-                    type="checkbox"
-                    onChange={() => handleCheckboxChange(index)}
-                    checked={todo.completed}
-                    id={`todo-${index}`}
-                  />
-                  <Draggable id={`todo-${index}`} index={index}>
-                    <label htmlFor={`todo-${index}`} className={todo.completed ? 'completed' : ''}>
-                      {todo.task}
-                    </label>
-                  </Draggable>
-                  <button onClick={() => removeTodo(index)}>Remove</button>
+                    <input
+                      type="checkbox"
+                      onChange={() => handleCheckboxChange(index)}
+                      checked={todo.completed}
+                      id={`todo-${index}`}
+                    />
+                    <Draggable id={`todo-${index}`} index={index}>
+                      <label htmlFor={`todo-${index}`} className={todo.completed ? 'completed' : ''}>
+                        {todo.task}
+                      </label>
+                    </Draggable>
+                    <button className="remove-button" onClick={() => removeTodo(index)}>Remove</button>
                 </div>
               </li>
               <div className="extra-container">
           <p>..</p>
-        </div>
+              </div>
             </Droppable>
           ))}
         </ul>
-        
+  5
       </DndContext>
     </div>
   );
