@@ -59,8 +59,8 @@ function App() {
                       checked={todo.completed}
                       id={`todo-${index}`}
                     />
-                    <Draggable id={`todo-${index}`} index={index}>
-                      <label htmlFor={`todo-${index}`} className={todo.completed ? 'completed' : ''}>
+                    <Draggable>
+                        <label htmlFor={`todo-${index}`} className={`todo-label ${todo.completed ? 'completed' : ''}`}>
                         {todo.task}
                       </label>
                     </Draggable>
@@ -73,7 +73,6 @@ function App() {
             </Droppable>
           ))}
         </ul>
-  5
       </DndContext>
     </div>
   );

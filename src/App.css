@@ -48,6 +48,10 @@ li {
   border-radius: 5px;
 }
 
+.todo-label{
+  cursor: grab;
+}
+
 .completed {
   text-decoration: line-through;
   color: #888;
