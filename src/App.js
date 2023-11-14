@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import { DndContext } from '@dnd-kit/core';
-import { Droppable } from './Droppable';
+import { Droppable } from './Droppable.js';
 import { Draggable } from './Draggable.js';
 
 function App() {
@@ -50,7 +50,7 @@ function App() {
       <DndContext onDragEnd={handleDrop}>
         <ul>
           {todos.map((todo, index) => (
-            <Droppable key={index}>
+            <Droppable key={todo}>
               <li>
                 <div className="todo-container">
                     <input
@@ -59,20 +59,20 @@ function App() {
                       checked={todo.completed}
                       id={`todo-${index}`}
                     />
-                    <Draggable>
-                        <label htmlFor={`todo-${index}`} className={`todo-label ${todo.completed ? 'completed' : ''}`}>
+                    <Draggable key={todo}>
+                      <label htmlFor={`todo-${index}`} className={`todo-label ${todo.completed ? 'completed' : ''}`}>
                         {todo.task}
                       </label>
                     </Draggable>
                     <button className="remove-button" onClick={() => removeTodo(index)}>Remove</button>
                 </div>
               </li>
-              <div className="extra-container">
-          <p>..</p>
-              </div>
             </Droppable>
           ))}
         </ul>
+        <div className="extra-container">
+          <p>..</p>
+              </div>
       </DndContext>
     </div>
   );

@@ -59,7 +59,7 @@ li {
 
 .todo-container input[type="checkbox"]:checked + label {
   text-decoration: line-through;
-  color: #e63838;
+  color: #888;
 }
 
 .remove-button {
