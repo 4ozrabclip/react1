@@ -50,7 +50,6 @@ function App() {
       <DndContext onDragEnd={handleDrop}>
         <ul>
           {todos.map((todo, index) => (
-            <Droppable key={todo}>
               <li>
                 <div className="todo-container">
                     <input
@@ -67,7 +66,6 @@ function App() {
                     <button className="remove-button" onClick={() => removeTodo(index)}>Remove</button>
                 </div>
               </li>
-            </Droppable>
           ))}
         </ul>
         <div className="extra-container">
