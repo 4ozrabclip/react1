@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
 import { DndContext } from '@dnd-kit/core';
-import { Droppable } from './Droppable.js';
 import { Draggable } from './Draggable.js';
 
 function App() {
